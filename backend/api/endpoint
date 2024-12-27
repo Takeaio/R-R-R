@@ -1,0 +1,12 @@
+// backend/server.js (例)
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3010;
+
+app.get('/api/endpoint', (req, res) => {
+  res.json({ message: 'こんにちは、Next.jsとAPIが連携しました！' });
+});
+
+app.listen(port, () => {
+  console.log(`Backend is running on http://localhost:${port}`);
+});

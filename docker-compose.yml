@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3010
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app/frontend-app
+    command: >
+      ash -c "npm install && npm run dev"
+    tty: true
+
+  backend:
+    build: ./backend
+    ports:
+      - "3010:3010"
+    depends_on:
+      - db
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/usr/src/app  # ホストの backend フォルダをコンテナの /usr/src/app にマウント
+      - /usr/src/app/node_modules
+    command: ["node", "server.js"]  # server.js を実行
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./backend/init:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres-data:
