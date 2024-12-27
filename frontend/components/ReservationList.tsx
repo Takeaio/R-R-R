@@ -14,7 +14,7 @@ const ReservationList = () => {
         setReservations(data);
       } catch (err) {
         setError('予約情報の取得に失敗しました');
-      }
+      }  
     };
 
     fetchReservations();
