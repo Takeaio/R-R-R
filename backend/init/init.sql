@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS reservations (
     id SERIAL PRIMARY KEY,
-    room_name VARCHAR(50),
-    reserved_by VARCHAR(50),
-    start_time TIMESTAMP,
-    end_time TIMESTAMP
+    name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL
 );

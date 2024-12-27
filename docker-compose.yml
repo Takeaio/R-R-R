@@ -18,13 +18,15 @@ services:
     build: ./backend
     ports:
       - "3010:3010"
+    environment:
+      - DATABASE_URL=postgresql://takeaio:takeaio1109@db:5432/rrr
     depends_on:
       - db
     env_file:
       - ./backend/.env
     volumes:
-      - ./backend:/usr/src/app  # ホストの backend フォルダをコンテナの /usr/src/app にマウント
-      - /usr/src/app/node_modules
+      - ./backend:/app  
+      - /app/node_modules
     command: ["node", "server.js"]  # server.js を実行
 
   db:
