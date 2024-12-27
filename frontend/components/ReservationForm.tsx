@@ -9,7 +9,7 @@ const ReservationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("form submitted", {name, date, time});
+    console.log('Form submitted', { name, date, time });  // データが送信される前にログに出力
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reservations`, {
       method: 'POST',
       headers: {
