@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const HomePage = () => (
-  <div>
+  <div className='mt-16'>
     <h1>予約システム </h1>
     <Link href="/reservations/create">
       予約する
